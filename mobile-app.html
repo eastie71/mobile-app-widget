@@ -45,22 +45,26 @@
         background: rgba(0,0,0,0.1);
         content: "";
       }
+      h3 {
+        margin: 10px;
+        text-align: center;
+      }
     </style>
   </head>
 
   <body>
     <div class="app-page" data-page="home">
       <div class="app-topbar">
-        <div class="app-title">Home page</div>
+        <div class="app-title">Home Page</div>
       </div>
       <div class="app-content">
       
         <p class="app-section">
-          Welcome to the App.js default theme. Click around to see what each widget looks like.
+          This is an example Mobile App using the App.js default theme. Click around to see what each widget looks like.
         </p>
        
         <div class="app-section">
-          <b>Topbar colours:</b><br>
+          <b>Select Topbar colour:</b><br>
           <ul class="colour-picker">
             <li data-colour="teal"></li>
             <li data-colour="green"></li>
@@ -87,23 +91,23 @@
         <div class="app-button left" data-back data-autotitle></div>
         <div class="app-title">Page 2</div>
       </div>
-      <div class="app-content">
-        Page 2 is lonely
+      <div class="app-content red">
+        <h3>Page 2 is lonely</h3>
       </div>
     </div>
 
     <div class="app-page" data-page="lists">
       <div class="app-topbar">
         <div class="left app-button" data-back data-autotitle></div>
-        <div class="app-title">Lists</div>
+        <div class="app-title">List Examples</div>
       </div>
 
       <div class="app-content">
         <ul class="app-list">
           <label>Label 1</label>
-          <li class="app-button" data-target="lists">Item 1</li>
-          <li class="app-button">Item 2</li>
-          <li class="app-button">Item 3</li>
+          <li class="app-button">Selectable Item 1</li>
+          <li class="app-button">Selectable Item 2</li>
+          <li class="app-button">Selectable Item 3</li>
           <label>Label 2</label>
           <li>Item 4</li>
           <li>Item 5</li>
@@ -127,7 +131,7 @@
     <div class="app-page" data-page="buttons">
       <div class="app-topbar">
         <div class="left app-button" data-back data-autotitle></div>
-        <div class="app-title">Buttons</div>
+        <div class="app-title">Button Examples</div>
         <div class="right app-button menu">Bonus</div>
       </div>
 
@@ -158,6 +162,7 @@
         var $topbar = $(page).find('.app-topbar');
         if (colour != "") {
           $topbar.addClass(colour);
+console.log("Re-Add class: " + colour);
         }
         $(page).find('ul.colour-picker li')
           .clickable()
@@ -165,8 +170,10 @@
             colour = $(this).data('colour');
             if (oldColour != "") {
               $(".app-topbar").removeClass(oldColour);
+console.log("Remove class: " + oldColour);
             }
             $(".app-topbar").addClass(colour);
+console.log("Add class: " + colour);            
             oldColour = colour;
           });
       }
@@ -176,6 +183,10 @@
       });
 
       App.controller('page2', function (page) {
+        setupPageColour(page);
+      });
+
+      App.controller('lists', function (page) {
         setupPageColour(page);
       });
 
